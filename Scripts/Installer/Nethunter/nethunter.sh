@@ -32,6 +32,7 @@ if [ "$first" != 1 ];then
 fi
 mv kali-${archurl} nethunter-fs
 rm nethunter-fs/etc/apt/sources.list
+rm -rf nethunter-fs/dev
 echo "deb http://mirror.fsmg.org.nz/kali kali-rolling main contrib non-free" >> nethunter-fs/etc/apt/sources.list
 echo "deb-src http://mirror.fsmg.org.nz/kali kali-rolling main contrib non-free" >> nethunter-fs/etc/apt/sources.list
 wget https://archive.kali.org/archive-key.asc -O nethunter-fs/etc/apt/trusted.gpg.d/kali-archive-key.asc

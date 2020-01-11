@@ -31,6 +31,6 @@ For Tumbleweed:
 
 5. After image downloaded, go to the tumbleweed folder and find a folder named "layer", and extract the layer folder.
 
-6. At last, open a terminal inside the extract the folder, and run this command to pack the system into xz (change the file name base on your need):
+6. At last, open a terminal in the extracted folder, and run this command to pack the system into xz (change the file name base on your need. ALso remember to delete the layer.tar, json, VERSION file before proceeding!):
 
 > XZ_OPT=-9 tar -cJvf ../openSUSE-Leap-rootfs-armhf.tar.xz *

@@ -4,9 +4,9 @@
 rm -rf $2
 mkdir $2
 if [ "$1" = "i386" ] || [ "$1" = "amd64" ] ; then
-  debootstrap --no-check-gpg --arch=$1 --variant=minbase --include=busybox,systemd,libsystemd0,wget,ca-certificates,neofetch,udisks2,gvfs rolling $1 http://ba.mirror.garr.it/mirrors/parrot
+  debootstrap --no-check-gpg --arch=$1 --variant=minbase --include=busybox,systemd,libsystemd0,wget,ca-certificates rolling $1 http://ba.mirror.garr.it/mirrors/parrot
 else
-  qemu-debootstrap --no-check-gpg --arch=$1 --variant=minbase --include=busybox,systemd,libsystemd0,wget,ca-certificates,neofetch,udisks2,gvfs rolling $1 http://ba.mirror.garr.it/mirrors/parrot
+  qemu-debootstrap --no-check-gpg --arch=$1 --variant=minbase --include=busybox,systemd,libsystemd0,wget,ca-certificates rolling $1 http://ba.mirror.garr.it/mirrors/parrot
 fi
 
 #Reduce size
@@ -23,6 +23,8 @@ echo "nameserver 8.8.4.4" >> $2/etc/resolv.conf
 
 #sources.list setup
 rm $2/etc/apt/sources.list
+rm $2/etc/hostname
+echo "AnLinux-Parrot" > /etc/hostname
 echo "deb http://ba.mirror.garr.it/mirrors/parrot rolling main contrib non-free" >> $2/etc/apt/sources.list
 echo "deb-src http://ba.mirror.garr.it/mirrors/parrot rolling main contrib non-free" >> $2/etc/apt/sources.list
 #Import the gpg key, this is only required in Parrot Security OS

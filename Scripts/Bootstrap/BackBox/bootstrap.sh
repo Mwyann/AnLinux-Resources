@@ -4,9 +4,9 @@
 rm -rf $2
 mkdir $2
 if [ "$1" = "i386" ] || [ "$1" = "amd64" ] ; then
-  debootstrap --no-check-gpg --arch=$1 --variant=minbase --include=systemd,libsystemd0,wget,ca-certificates,udisks2,gvfs xenial $1 http://archive.ubuntu.com/ubuntu
+  debootstrap --no-check-gpg --arch=$1 --variant=minbase --include=systemd,libsystemd0,wget,ca-certificates xenial $1 http://archive.ubuntu.com/ubuntu
 else  
-  qemu-debootstrap --no-check-gpg --arch=$1 --variant=minbase --include=systemd,libsystemd0,wget,ca-certificates,udisks2,gvfs xenial $1 http://ports.ubuntu.com/ubuntu-ports
+  qemu-debootstrap --no-check-gpg --arch=$1 --variant=minbase --include=systemd,libsystemd0,wget,ca-certificates xenial $1 http://ports.ubuntu.com/ubuntu-ports
 fi
 
 #Reduce size
@@ -29,6 +29,8 @@ echo "nameserver 8.8.4.4" >> $2/etc/resolv.conf
 
 #sources.list setup
 rm $2/etc/apt/sources.list
+rm $2/etc/hostname
+echo "AnLinux-BackBox" > /etc/hostname
 if [ "$1" = "i386" ] || [ "$1" = "amd64" ] ; then
   echo "deb http://archive.ubuntu.com/ubuntu xenial main restricted universe multiverse" >> $2/etc/apt/sources.list
   echo "deb-src http://archive.ubuntu.com/ubuntu xenial main restricted universe multiverse" >> $2/etc/apt/sources.list
